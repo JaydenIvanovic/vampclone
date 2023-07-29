@@ -1,6 +1,6 @@
 ﻿Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gigi-game", "gigi-game.csproj", "{60D7006E-C20A-4070-8D02-C9A75D84450B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vampclone", "vampclone.csproj", "{60D7006E-C20A-4070-8D02-C9A75D84450B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

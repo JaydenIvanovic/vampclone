@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="gigi-game"
+config/name="vampclone"
 config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -20,7 +20,7 @@ window/stretch/scale=3.0
 
 [dotnet]
 
-project/assembly_name="gigi-game"
+project/assembly_name="vampclone"
 
 [input]
 
