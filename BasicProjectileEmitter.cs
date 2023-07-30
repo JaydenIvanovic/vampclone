@@ -16,7 +16,7 @@ public partial class BasicProjectileEmitter : Node2D {
         spawnTimer = new Timer();
         spawnTimer.OneShot = false;
         spawnTimer.Autostart = true;
-        spawnTimer.WaitTime = 2;
+        spawnTimer.WaitTime = 1.5;
         spawnTimer.Timeout += this.SpawnProjectile;
         this.AddChild(spawnTimer);
     }
@@ -43,6 +43,6 @@ public partial class BasicProjectileEmitter : Node2D {
 
         projectiles.Add(projectile);
 
-        GetTree().Root.AddChild(projectile);
+        GetTree().Root.GetNode("Main").AddChild(projectile);
     }
 }

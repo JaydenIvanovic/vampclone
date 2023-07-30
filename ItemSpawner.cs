@@ -2,6 +2,9 @@ using Godot;
 using System;
 
 public partial class ItemSpawner : Node {
+    [Export]
+    public Node2D Target;
+
     private PackedScene experienceGemScene;
 
     // Called when the node enters the scene tree for the first time.
@@ -21,6 +24,7 @@ public partial class ItemSpawner : Node {
         }
         var experienceGem = experienceGemScene.Instantiate<ExperienceGem>();
         experienceGem.Position = deathPosition;
-        GetTree().Root.AddChild(experienceGem);
+        experienceGem.Target = Target;
+        GetTree().Root.GetNode("Main").AddChild(experienceGem);
     }
 }
