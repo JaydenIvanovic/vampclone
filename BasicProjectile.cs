@@ -1,9 +1,11 @@
 using Godot;
-using System;
 
 public partial class BasicProjectile : Area2D, IMover {
     public Vector2 Direction { get; set; } = Vector2.Zero;
-    private float speed = 200;
+
+    private const float SPEED = 200;
+    private const double MAX_LIFETIME_IN_SECONDS = 10;
+    private double timeInWorld = 0;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() {
@@ -12,10 +14,12 @@ public partial class BasicProjectile : Area2D, IMover {
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta) {
-        Position = Position + Direction * speed * (float)delta;
+        if (timeInWorld > MAX_LIFETIME_IN_SECONDS) {
+            QueueFree();
+        }
+        timeInWorld += delta;
 
-        // TODO: Check how long the projectile has been in the game world
-        // and free it if it's been too long (no point keeping it around)
+        Position = Position + Direction * SPEED * (float)delta;
     }
 
     private void HandleCollision(Area2D area) {
