@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d1wq2yej31ajf"]
+[gd_scene load_steps=17 format=3 uid="uid://d1wq2yej31ajf"]
 
 [ext_resource type="Texture2D" uid="uid://qdx3ma6q34kp" path="res://mainlevbuild.png" id="1_gq5cq"]
 [ext_resource type="Script" path="res://Player.cs" id="2_4l8xe"]
@@ -6,7 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://ng7otyiiwow6" path="res://yellowguy.png" id="4_1y5m7"]
 [ext_resource type="Script" path="res://BasicProjectileEmitter.cs" id="4_d2qfn"]
 [ext_resource type="Script" path="res://EnemySpawner.cs" id="5_sdci2"]
+[ext_resource type="Script" path="res://WeaponGarlic.cs" id="6_c2b2n"]
 [ext_resource type="Script" path="res://ItemSpawner.cs" id="6_hskgy"]
+[ext_resource type="Script" path="res://UI.cs" id="8_ti78w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wgmwu"]
 texture = ExtResource("1_gq5cq")
@@ -1063,6 +1065,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_peq6l"]
 size = Vector2(16, 16)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_1qivc"]
+radius = 16.68
+
 [node name="Main" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -1076,10 +1081,8 @@ scale = Vector2(1.5, 1.5)
 script = ExtResource("2_4l8xe")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-scale = Vector2(1, 1)
 
 [node name="BasicProjectileEmitter" type="Node2D" parent="Player"]
-scale = Vector2(1, 1)
 script = ExtResource("4_d2qfn")
 
 [node name="MovementController" type="Node2D" parent="Player"]
@@ -1088,12 +1091,21 @@ scale = Vector2(5, 5)
 script = ExtResource("2_36eer")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-scale = Vector2(1, 1)
 sprite_frames = SubResource("SpriteFrames_hd3he")
-frame_progress = 0.805024
+frame_progress = 0.23844
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+visible = false
 shape = SubResource("RectangleShape2D_peq6l")
+
+[node name="WeaponGarlic" type="Area2D" parent="Player"]
+show_behind_parent = true
+script = ExtResource("6_c2b2n")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/WeaponGarlic"]
+position = Vector2(0, 1.33334)
+shape = SubResource("CircleShape2D_1qivc")
+debug_color = Color(0.815686, 0.211765, 0.717647, 0.419608)
 
 [node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("5_sdci2")
@@ -1102,3 +1114,35 @@ target = NodePath("../Player")
 [node name="ItemSpawner" type="Node" parent="." node_paths=PackedStringArray("Target")]
 script = ExtResource("6_hskgy")
 Target = NodePath("../Player")
+
+[node name="UI" type="Node" parent="."]
+script = ExtResource("8_ti78w")
+
+[node name="UpgradeSelector" type="VFlowContainer" parent="UI"]
+offset_left = 167.0
+offset_top = 64.0
+offset_right = 396.0
+offset_bottom = 330.0
+alignment = 1
+
+[node name="UpgradeOption" type="HBoxContainer" parent="UI/UpgradeSelector"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/UpgradeSelector/UpgradeOption"]
+layout_mode = 2
+text = "Add 1 projectile"
+
+[node name="Button" type="Button" parent="UI/UpgradeSelector/UpgradeOption"]
+layout_mode = 2
+text = "Spell 1"
+
+[node name="UpgradeOption2" type="HBoxContainer" parent="UI/UpgradeSelector"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="UI/UpgradeSelector/UpgradeOption2"]
+layout_mode = 2
+text = "Add garlic"
+
+[node name="Button" type="Button" parent="UI/UpgradeSelector/UpgradeOption2"]
+layout_mode = 2
+text = "Spell 1"

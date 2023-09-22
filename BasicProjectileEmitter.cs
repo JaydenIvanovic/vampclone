@@ -6,6 +6,9 @@ public partial class BasicProjectileEmitter : Node2D {
     private PackedScene projectileScene;
     private Array<BasicProjectile> projectiles;
     private Timer spawnTimer;
+    private uint numberOfProjectiles = 1;
+    // TODO: Do we need a global state object?
+    private uint experienceGained;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() {
@@ -19,6 +22,8 @@ public partial class BasicProjectileEmitter : Node2D {
         spawnTimer.WaitTime = 1.5;
         spawnTimer.Timeout += this.SpawnProjectile;
         this.AddChild(spawnTimer);
+
+        Events.getInstance().ExperienceGemAcquired += HandleExperienceAcquired;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -37,12 +42,42 @@ public partial class BasicProjectileEmitter : Node2D {
             GD.Print("Spawning projectile...");
         }
 
-        var projectile = projectileScene.Instantiate<BasicProjectile>();
-        projectile.Position = mover.Position;
-        projectile.Direction = mover.Direction;
+        for (var i = 0; i < numberOfProjectiles; i++) {
+            var projectile = projectileScene.Instantiate<BasicProjectile>();
+            projectile.Position = mover.Position;
+            projectile.Direction = mover.Direction;
 
-        projectiles.Add(projectile);
+            // Randomize direction for every projectile apart from the first
+            if (i > 0) {
+                projectile.Direction = GetRandomDirection();
+            }
 
-        GetTree().Root.GetNode("Main").AddChild(projectile);
+            projectiles.Add(projectile);
+
+            GetTree().Root.GetNode("Main").AddChild(projectile);
+        }
+    }
+
+    private Vector2 GetRandomDirection() {
+        Vector2[] directions = {
+            Vector2.Left,
+            Vector2.Right,
+            Vector2.Up,
+            Vector2.Down,
+            new Vector2(-1,1), // upper left
+            new Vector2(1,1), // upper right
+            new Vector2(-1,-1), // lower left
+            new Vector2(1,-1), // lower right
+        };
+        return directions[(GD.Randi() % directions.Length)];
+    }
+
+    private void HandleExperienceAcquired() {
+        experienceGained += 10;
+
+        numberOfProjectiles = experienceGained / 50;
+        if (numberOfProjectiles < 1) {
+            numberOfProjectiles = 1;
+        }
     }
 }
