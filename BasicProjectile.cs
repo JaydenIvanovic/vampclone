@@ -26,7 +26,7 @@ public partial class BasicProjectile : Area2D, IMover {
         if (!area.GetGroups().Contains(Constants.Groups.ENEMIES)) {
             return;
         }
-        area.QueueFree();
+        (area as IEnemy).TakeDamage(30);
         QueueFree();
     }
 

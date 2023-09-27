@@ -3,14 +3,12 @@ using Godot;
 public partial class BasicEnemy : Area2D, IEnemy {
     public Node2D Target { get; set; }
     private Vector2 moveDirection;
+    private float health = 30;
     private float moveSpeed = 30;
-    private PackedScene itemScene;
-
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() {
         AddToGroup(Constants.Groups.ENEMIES);
-        itemScene = GD.Load<PackedScene>("res://experience_gem.tscn");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -27,5 +25,12 @@ public partial class BasicEnemy : Area2D, IEnemy {
             Events.getInstance().EmitSignal(Events.SignalName.EnemyDied, Position);
         }
         base._Notification(what);
+    }
+
+    public void TakeDamage(float damage) {
+        health -= damage;
+        if (health <= 0) {
+            QueueFree();
+        }
     }
 }

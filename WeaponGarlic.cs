@@ -28,7 +28,7 @@ public partial class WeaponGarlic : Area2D {
 
 	private void HandleCollision(Area2D target) {
 		if (target.IsInGroup(Groups.ENEMIES)) {
-			GD.Print("Garlic hit: ", target.Name);
+			(target as IEnemy).TakeDamage(10.0f);
 		}
 	}
 }
