@@ -7,8 +7,6 @@ public partial class BasicProjectileEmitter : Node2D {
     private Array<BasicProjectile> projectiles;
     private Timer spawnTimer;
     private uint numberOfProjectiles = 1;
-    // TODO: Do we need a global state object?
-    private uint experienceGained;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() {
@@ -73,9 +71,7 @@ public partial class BasicProjectileEmitter : Node2D {
     }
 
     private void HandleExperienceAcquired() {
-        experienceGained += 10;
-
-        numberOfProjectiles = experienceGained / 50;
+        numberOfProjectiles = Globals.GameState.experienceGained / 50;
         if (numberOfProjectiles < 1) {
             numberOfProjectiles = 1;
         }

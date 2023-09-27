@@ -3,7 +3,7 @@ using Godot;
 
 public partial class WeaponGarlic : Area2D {
 	private CollisionShape2D collisionShape2D;
-	private float radius = 20f;
+	private float radius = 0f;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
@@ -16,6 +16,8 @@ public partial class WeaponGarlic : Area2D {
 		// damage from Garlic periodically.
 		// On exit, remove this variable.
 		AreaEntered += HandleCollision;
+
+		Events.getInstance().ExperienceGemAcquired += HandleExperienceAcquired;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -30,5 +32,12 @@ public partial class WeaponGarlic : Area2D {
 		if (target.IsInGroup(Groups.ENEMIES)) {
 			(target as IEnemy).TakeDamage(10.0f);
 		}
+	}
+
+	private void HandleExperienceAcquired() {
+		var garlicLevels = Globals.GameState.experienceGained / 100;
+		GD.Print("Garlic levels: ", garlicLevels);
+		radius = 10 * garlicLevels;
+		QueueRedraw();
 	}
 }

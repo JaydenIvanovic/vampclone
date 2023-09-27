@@ -1119,6 +1119,7 @@ Target = NodePath("../Player")
 script = ExtResource("8_ti78w")
 
 [node name="UpgradeSelector" type="VFlowContainer" parent="UI"]
+visible = false
 offset_left = 167.0
 offset_top = 64.0
 offset_right = 396.0
