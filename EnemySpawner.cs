@@ -10,12 +10,13 @@ public partial class EnemySpawner : Node {
     public override void _Ready() {
         enemyScene = GD.Load<PackedScene>("res://basic_enemy.tscn");
 
-        spawnTimer = new Timer();
-        spawnTimer.OneShot = false;
-        spawnTimer.Autostart = true;
-        spawnTimer.WaitTime = 1;
-        spawnTimer.Timeout += this.SpawnEnemy;
-        this.AddChild(spawnTimer);
+        spawnTimer = new Timer {
+            OneShot = false,
+            Autostart = true,
+            WaitTime = 1
+        };
+        spawnTimer.Timeout += SpawnEnemy;
+        AddChild(spawnTimer);
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -25,12 +26,12 @@ public partial class EnemySpawner : Node {
     private void SpawnEnemy() {
         var enemyInstance = enemyScene.Instantiate<IEnemy>();
         enemyInstance.Target = target;
-        enemyInstance.Position = this.GetRandomNearbyPosition(target.Position);
+        enemyInstance.Position = GetRandomNearbyPosition(target.Position);
         if (Constants.Logger.CAN_LOG_SPAWN_ENEMY) {
 
             GD.Print("Spawning enemy at: ", enemyInstance.Position);
         }
-        this.GetParent().AddChild(enemyInstance as Node);
+        GetParent().AddChild(enemyInstance as Node);
     }
 
     private Vector2 GetRandomNearbyPosition(Vector2 target) {

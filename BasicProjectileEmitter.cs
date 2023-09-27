@@ -16,12 +16,13 @@ public partial class BasicProjectileEmitter : Node2D {
         projectileScene = GD.Load<PackedScene>("res://basic_projectile.tscn");
         projectiles = new Array<BasicProjectile>();
 
-        spawnTimer = new Timer();
-        spawnTimer.OneShot = false;
-        spawnTimer.Autostart = true;
-        spawnTimer.WaitTime = 1.5;
-        spawnTimer.Timeout += this.SpawnProjectile;
-        this.AddChild(spawnTimer);
+        spawnTimer = new Timer {
+            OneShot = false,
+            Autostart = true,
+            WaitTime = 1.5
+        };
+        spawnTimer.Timeout += SpawnProjectile;
+        AddChild(spawnTimer);
 
         Events.getInstance().ExperienceGemAcquired += HandleExperienceAcquired;
     }
@@ -38,7 +39,6 @@ public partial class BasicProjectileEmitter : Node2D {
         }
 
         if (Constants.Logger.CAN_LOG_SPAWN_PROJECTILE) {
-
             GD.Print("Spawning projectile...");
         }
 
@@ -69,7 +69,7 @@ public partial class BasicProjectileEmitter : Node2D {
             new Vector2(-1,-1), // lower left
             new Vector2(1,-1), // lower right
         };
-        return directions[(GD.Randi() % directions.Length)];
+        return directions[GD.Randi() % directions.Length];
     }
 
     private void HandleExperienceAcquired() {

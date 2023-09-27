@@ -1,5 +1,4 @@
 using Godot;
-using System;
 
 public partial class MovementController : Node2D, IMover {
     public Vector2 Direction { get; private set; } = Vector2.Zero;
