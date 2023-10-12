@@ -36,8 +36,8 @@ public partial class WeaponGarlic : Area2D {
 
 	private void HandleExperienceAcquired() {
 		var garlicLevels = Globals.GameState.experienceGained / 100;
-		GD.Print("Garlic levels: ", garlicLevels);
-		radius = 10 * garlicLevels;
+		// TODO: Make this logarithmic?
+		radius = 13 * garlicLevels;
 		QueueRedraw();
 	}
 }
