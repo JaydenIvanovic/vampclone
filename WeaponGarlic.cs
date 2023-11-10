@@ -38,8 +38,8 @@ public partial class WeaponGarlic : Area2D {
 			}
 		};
 
-		Events.I.ExperienceGemAcquired += () => {
-			var garlicLevels = Globals.GameState.ExperienceGained / 100;
+		Events.I.PlayerSelectedLevelUp += () => {
+			var garlicLevels = Globals.GameState.NumGarlicUpgrades;
 			// TODO: Make this logarithmic?
 			(collisionShape2D.Shape as CircleShape2D).Radius = 15 * garlicLevels;
 			QueueRedraw();

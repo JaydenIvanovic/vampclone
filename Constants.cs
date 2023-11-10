@@ -8,4 +8,8 @@ namespace Constants {
     public static class Groups {
         public const string ENEMIES = "enemies";
     }
+
+    public static class DebugUi {
+        public const bool CAN_SHOW_DEBUG_PANEL = true;
+    }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://d1wq2yej31ajf"]
+[gd_scene load_steps=22 format=3 uid="uid://d1wq2yej31ajf"]
 
 [ext_resource type="Texture2D" uid="uid://qdx3ma6q34kp" path="res://mainlevbuild.png" id="1_gq5cq"]
 [ext_resource type="Script" path="res://Player.cs" id="2_4l8xe"]
@@ -9,7 +9,10 @@
 [ext_resource type="Script" path="res://WeaponGarlic.cs" id="6_c2b2n"]
 [ext_resource type="Shader" path="res://garlic.gdshader" id="6_g8ava"]
 [ext_resource type="Script" path="res://ItemSpawner.cs" id="6_hskgy"]
+[ext_resource type="Script" path="res://UpgradeSelector.cs" id="9_e06ku"]
 [ext_resource type="Script" path="res://DebugPanel.cs" id="10_d364r"]
+[ext_resource type="Script" path="res://PlayerLevelUpDirector.cs" id="11_2yjg3"]
+[ext_resource type="Script" path="res://GlobalsInitializer.cs" id="13_1ktj4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wgmwu"]
 texture = ExtResource("1_gq5cq")
@@ -1112,17 +1115,10 @@ position = Vector2(0, 1.33334)
 shape = SubResource("CircleShape2D_1qivc")
 debug_color = Color(0.815686, 0.211765, 0.717647, 0.419608)
 
-[node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("5_sdci2")
-target = NodePath("../Player")
-
-[node name="ItemSpawner" type="Node" parent="." node_paths=PackedStringArray("Target")]
-script = ExtResource("6_hskgy")
-Target = NodePath("../Player")
-
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="DebugPanel" type="VBoxContainer" parent="UI"]
+visible = false
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 98.0
@@ -1145,12 +1141,21 @@ layout_mode = 2
 text = "Experience: 0"
 
 [node name="UpgradeSelector" type="VFlowContainer" parent="UI"]
+process_mode = 2
 visible = false
-offset_left = 167.0
-offset_top = 64.0
-offset_right = 396.0
-offset_bottom = 330.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -114.5
+offset_top = -133.0
+offset_right = 114.5
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 2
 alignment = 1
+script = ExtResource("9_e06ku")
 
 [node name="UpgradeOption" type="HBoxContainer" parent="UI/UpgradeSelector"]
 layout_mode = 2
@@ -1173,3 +1178,17 @@ text = "Add garlic"
 [node name="Button" type="Button" parent="UI/UpgradeSelector/UpgradeOption2"]
 layout_mode = 2
 text = "Spell 1"
+
+[node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("5_sdci2")
+target = NodePath("../Player")
+
+[node name="ItemSpawner" type="Node" parent="." node_paths=PackedStringArray("Target")]
+script = ExtResource("6_hskgy")
+Target = NodePath("../Player")
+
+[node name="PlayerLevelUpDirector" type="Node" parent="."]
+script = ExtResource("11_2yjg3")
+
+[node name="GlobalsInitializer" type="Node" parent="."]
+script = ExtResource("13_1ktj4")

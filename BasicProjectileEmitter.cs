@@ -21,12 +21,11 @@ public partial class BasicProjectileEmitter : Node2D {
         };
         spawnTimer.Timeout += SpawnProjectile;
         AddChild(spawnTimer);
-
-        Events.I.ExperienceGemAcquired += HandleExperienceAcquired;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta) {
+        numberOfProjectiles = Globals.GameState.NumProjectileCountUpgrades;
     }
 
     private void SpawnProjectile() {
@@ -68,12 +67,5 @@ public partial class BasicProjectileEmitter : Node2D {
             new Vector2(1,-1), // lower right
         };
         return directions[GD.Randi() % directions.Length];
-    }
-
-    private void HandleExperienceAcquired() {
-        numberOfProjectiles = Globals.GameState.ExperienceGained / 50;
-        if (numberOfProjectiles < 1) {
-            numberOfProjectiles = 1;
-        }
     }
 }
