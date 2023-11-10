@@ -10,7 +10,7 @@ public partial class ItemSpawner : Node {
     public override void _Ready() {
         experienceGemScene = GD.Load<PackedScene>("res://experience_gem.tscn");
 
-        Events.getInstance().EnemyDied += SpawnExperience;
+        Events.I.EnemyDied += SpawnExperience;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

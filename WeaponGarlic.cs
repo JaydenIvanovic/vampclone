@@ -1,10 +1,11 @@
+using System.Collections.Generic;
 using System.Linq;
 using Constants;
 using Godot;
 
 public partial class WeaponGarlic : Area2D {
 	private CollisionShape2D collisionShape2D;
-	private Area2D[] enemiesInRadius;
+	private List<Area2D> enemiesInRadius;
 	private Timer damageTicker;
 
 	// Called when the node enters the scene tree for the first time.
@@ -12,7 +13,7 @@ public partial class WeaponGarlic : Area2D {
 		collisionShape2D = GetNode<CollisionShape2D>("./CollisionShape2D");
 		(collisionShape2D.Shape as CircleShape2D).Radius = 0f;
 
-		enemiesInRadius = new Area2D[] { };
+		enemiesInRadius = new List<Area2D>();
 
 		damageTicker = new Timer {
 			OneShot = false,
@@ -28,19 +29,19 @@ public partial class WeaponGarlic : Area2D {
 
 		AreaEntered += (Area2D target) => {
 			if (target.IsInGroup(Groups.ENEMIES)) {
-				enemiesInRadius = enemiesInRadius.Append(target).ToArray();
+				enemiesInRadius.Add(target);
 			}
 		};
 		AreaExited += (Area2D target) => {
 			if (target.IsInGroup(Groups.ENEMIES)) {
-				enemiesInRadius = enemiesInRadius.Where(e => e.GetInstanceId() != target.GetInstanceId()).ToArray();
+				enemiesInRadius = enemiesInRadius.Where(e => e.GetInstanceId() != target.GetInstanceId()).ToList();
 			}
 		};
 
-		Events.getInstance().ExperienceGemAcquired += () => {
-			var garlicLevels = Globals.GameState.experienceGained / 100;
+		Events.I.ExperienceGemAcquired += () => {
+			var garlicLevels = Globals.GameState.ExperienceGained / 100;
 			// TODO: Make this logarithmic?
-			(collisionShape2D.Shape as CircleShape2D).Radius = 13 * garlicLevels;
+			(collisionShape2D.Shape as CircleShape2D).Radius = 15 * garlicLevels;
 			QueueRedraw();
 		};
 	}

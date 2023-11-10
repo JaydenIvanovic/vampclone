@@ -22,7 +22,7 @@ public partial class BasicProjectileEmitter : Node2D {
         spawnTimer.Timeout += SpawnProjectile;
         AddChild(spawnTimer);
 
-        Events.getInstance().ExperienceGemAcquired += HandleExperienceAcquired;
+        Events.I.ExperienceGemAcquired += HandleExperienceAcquired;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -71,7 +71,7 @@ public partial class BasicProjectileEmitter : Node2D {
     }
 
     private void HandleExperienceAcquired() {
-        numberOfProjectiles = Globals.GameState.experienceGained / 50;
+        numberOfProjectiles = Globals.GameState.ExperienceGained / 50;
         if (numberOfProjectiles < 1) {
             numberOfProjectiles = 1;
         }

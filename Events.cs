@@ -8,10 +8,12 @@ public partial class Events : Node2D {
 
     private static Events eventInstance = null;
 
-    public static Events getInstance() {
-        if (eventInstance == null) {
-            eventInstance = new Events();
+    public static Events I {
+        get {
+            if (eventInstance == null) {
+                eventInstance = new Events();
+            }
+            return eventInstance;
         }
-        return eventInstance;
     }
 }

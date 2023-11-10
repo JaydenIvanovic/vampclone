@@ -22,7 +22,8 @@ public partial class BasicEnemy : Area2D, IEnemy {
             if (Constants.Logger.CAN_LOG_SPAWN_GEM) {
                 GD.Print("Emitting signal that enemy died");
             }
-            Events.getInstance().EmitSignal(Events.SignalName.EnemyDied, Position);
+            Globals.GameState.Kills += 1;
+            Events.I.EmitSignal(Events.SignalName.EnemyDied, Position);
         }
         base._Notification(what);
     }

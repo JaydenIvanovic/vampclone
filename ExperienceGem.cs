@@ -20,8 +20,8 @@ public partial class ExperienceGem : Area2D {
             Position += Position.DirectionTo(Target.Position) * SPEED * (float)delta;
         }
         if (Position.DistanceTo(Target.Position) < ACQUIRED_RANGE) {
-            Globals.GameState.experienceGained += 10;
-            Events.getInstance().EmitSignal(Events.SignalName.ExperienceGemAcquired);
+            Globals.GameState.ExperienceGained += 10;
+            Events.I.EmitSignal(Events.SignalName.ExperienceGemAcquired);
             QueueFree();
         }
     }
