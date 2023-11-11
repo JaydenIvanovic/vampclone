@@ -7,6 +7,15 @@ public partial class Player : Area2D {
     public override void _Ready() {
         sprite = GetNode<AnimatedSprite2D>("./AnimatedSprite2D");
         sprite.Play();
+
+        AreaEntered += (Area2D target) => {
+            if (target.IsInGroup(Constants.Groups.ENEMIES)) {
+                Globals.GameState.PlayerHealthAmount -= 10;
+                if (Globals.GameState.PlayerHealthAmount <= 0) {
+                    Events.I.EmitSignal(Events.SignalName.PlayerDied);
+                }
+            }
+        };
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

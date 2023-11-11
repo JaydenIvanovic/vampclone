@@ -1,6 +1,4 @@
 using Godot;
-using System;
-using System.Reflection.Metadata;
 
 public partial class DebugPanel : VBoxContainer {
 	// Called when the node enters the scene tree for the first time.
@@ -12,6 +10,9 @@ public partial class DebugPanel : VBoxContainer {
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta) {
+		var healthLabel = GetNode<Label>("%Health");
+		healthLabel.Text = $"Health: {Globals.GameState.PlayerHealthAmount}";
+
 		var killsLabel = GetNode<Label>("%Kills");
 		killsLabel.Text = $"Kills: {Globals.GameState.Kills}";
 

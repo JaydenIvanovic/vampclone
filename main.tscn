@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://d1wq2yej31ajf"]
+[gd_scene load_steps=23 format=3 uid="uid://d1wq2yej31ajf"]
 
 [ext_resource type="Texture2D" uid="uid://qdx3ma6q34kp" path="res://shared/assets/mainlevbuild.png" id="1_1h2ck"]
 [ext_resource type="Script" path="res://modules/player/Player.cs" id="2_6oubd"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://modules/enemies/EnemySpawner.cs" id="9_0o0gf"]
 [ext_resource type="Script" path="res://modules/ui/UpgradeSelector.cs" id="9_663kt"]
 [ext_resource type="Script" path="res://modules/items/ItemSpawner.cs" id="10_j22um"]
+[ext_resource type="Script" path="res://modules/ui/GameOverScreen.cs" id="10_v55j4"]
 [ext_resource type="Script" path="res://modules/player/PlayerLevelUpDirector.cs" id="11_fdkqm"]
 [ext_resource type="Script" path="res://modules/GameInitializer.cs" id="12_3rg4r"]
 
@@ -1118,7 +1119,6 @@ debug_color = Color(0.815686, 0.211765, 0.717647, 0.419608)
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="DebugPanel" type="VBoxContainer" parent="UI"]
-visible = false
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 98.0
@@ -1129,6 +1129,11 @@ script = ExtResource("8_x5lqv")
 unique_name_in_owner = true
 layout_mode = 2
 text = "Debug panel"
+
+[node name="Health" type="Label" parent="UI/DebugPanel"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Health: 0"
 
 [node name="Kills" type="Label" parent="UI/DebugPanel"]
 unique_name_in_owner = true
@@ -1178,6 +1183,31 @@ text = "Add garlic"
 [node name="Button" type="Button" parent="UI/UpgradeSelector/UpgradeOption2"]
 layout_mode = 2
 text = "Spell 1"
+
+[node name="GameOverScreen" type="VFlowContainer" parent="UI"]
+process_mode = 2
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -195.0
+offset_top = -97.0
+offset_right = 164.0
+offset_bottom = 116.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+script = ExtResource("10_v55j4")
+
+[node name="Label" type="Label" parent="UI/GameOverScreen"]
+layout_mode = 2
+text = "GAME OVER"
+
+[node name="Button" type="Button" parent="UI/GameOverScreen"]
+layout_mode = 2
+text = "Click to play again"
 
 [node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("9_0o0gf")
