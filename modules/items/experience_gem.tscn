@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://iq6tq1u4yckx"]
 
-[ext_resource type="Script" path="res://ExperienceGem.cs" id="1_fgn7m"]
-[ext_resource type="Texture2D" uid="uid://xe1proq2c04y" path="res://icon.svg" id="2_3c4tk"]
+[ext_resource type="Script" path="res://modules/items/ExperienceGem.cs" id="1_fgn7m"]
+[ext_resource type="Texture2D" uid="uid://xe1proq2c04y" path="res://shared/assets/icon.svg" id="2_3c4tk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgvvj"]
 size = Vector2(6, 6)

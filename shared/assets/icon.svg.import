@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://qdx3ma6q34kp"
-path="res://.godot/imported/mainlevbuild.png-d963511bbb0dbca319fd54349afb621f.ctex"
+uid="uid://xe1proq2c04y"
+path="res://.godot/imported/icon.svg-422b5c8181cf4068bd3cea41a2cf69ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://mainlevbuild.png"
-dest_files=["res://.godot/imported/mainlevbuild.png-d963511bbb0dbca319fd54349afb621f.ctex"]
+source_file="res://shared/assets/icon.svg"
+dest_files=["res://.godot/imported/icon.svg-422b5c8181cf4068bd3cea41a2cf69ce.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

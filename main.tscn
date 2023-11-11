@@ -1,21 +1,21 @@
 [gd_scene load_steps=22 format=3 uid="uid://d1wq2yej31ajf"]
 
-[ext_resource type="Texture2D" uid="uid://qdx3ma6q34kp" path="res://mainlevbuild.png" id="1_gq5cq"]
-[ext_resource type="Script" path="res://Player.cs" id="2_4l8xe"]
-[ext_resource type="Script" path="res://MovementController.cs" id="2_36eer"]
-[ext_resource type="Texture2D" uid="uid://ng7otyiiwow6" path="res://yellowguy.png" id="4_1y5m7"]
-[ext_resource type="Script" path="res://BasicProjectileEmitter.cs" id="4_d2qfn"]
-[ext_resource type="Script" path="res://EnemySpawner.cs" id="5_sdci2"]
-[ext_resource type="Script" path="res://WeaponGarlic.cs" id="6_c2b2n"]
-[ext_resource type="Shader" path="res://garlic.gdshader" id="6_g8ava"]
-[ext_resource type="Script" path="res://ItemSpawner.cs" id="6_hskgy"]
-[ext_resource type="Script" path="res://UpgradeSelector.cs" id="9_e06ku"]
-[ext_resource type="Script" path="res://DebugPanel.cs" id="10_d364r"]
-[ext_resource type="Script" path="res://PlayerLevelUpDirector.cs" id="11_2yjg3"]
-[ext_resource type="Script" path="res://GlobalsInitializer.cs" id="13_1ktj4"]
+[ext_resource type="Texture2D" uid="uid://qdx3ma6q34kp" path="res://shared/assets/mainlevbuild.png" id="1_1h2ck"]
+[ext_resource type="Script" path="res://modules/player/Player.cs" id="2_6oubd"]
+[ext_resource type="Script" path="res://modules/player/BasicProjectileEmitter.cs" id="3_ntda5"]
+[ext_resource type="Script" path="res://modules/player/MovementController.cs" id="4_0h1j2"]
+[ext_resource type="Texture2D" uid="uid://ng7otyiiwow6" path="res://modules/player/yellowguy.png" id="5_ibd0f"]
+[ext_resource type="Shader" path="res://modules/player/garlic.gdshader" id="6_ess8c"]
+[ext_resource type="Script" path="res://modules/player/WeaponGarlic.cs" id="7_hdub7"]
+[ext_resource type="Script" path="res://modules/ui/DebugPanel.cs" id="8_x5lqv"]
+[ext_resource type="Script" path="res://modules/enemies/EnemySpawner.cs" id="9_0o0gf"]
+[ext_resource type="Script" path="res://modules/ui/UpgradeSelector.cs" id="9_663kt"]
+[ext_resource type="Script" path="res://modules/items/ItemSpawner.cs" id="10_j22um"]
+[ext_resource type="Script" path="res://modules/player/PlayerLevelUpDirector.cs" id="11_fdkqm"]
+[ext_resource type="Script" path="res://modules/GameInitializer.cs" id="12_3rg4r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wgmwu"]
-texture = ExtResource("1_gq5cq")
+texture = ExtResource("1_1h2ck")
 40:0/0 = 0
 41:0/0 = 0
 42:0/0 = 0
@@ -1045,11 +1045,11 @@ texture = ExtResource("1_gq5cq")
 sources/0 = SubResource("TileSetAtlasSource_wgmwu")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xibuf"]
-atlas = ExtResource("4_1y5m7")
+atlas = ExtResource("5_ibd0f")
 region = Rect2(0, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0cw1w"]
-atlas = ExtResource("4_1y5m7")
+atlas = ExtResource("5_ibd0f")
 region = Rect2(16, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hd3he"]
@@ -1070,7 +1070,7 @@ animations = [{
 size = Vector2(16, 16)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_csqoh"]
-shader = ExtResource("6_g8ava")
+shader = ExtResource("6_ess8c")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1qivc"]
 radius = 16.68
@@ -1085,17 +1085,17 @@ layer_0/tile_data = PackedInt32Array(-131077, 3080192, 17, -65541, 3080192, 18, 
 [node name="Player" type="Area2D" parent="."]
 position = Vector2(94, 198)
 scale = Vector2(1.5, 1.5)
-script = ExtResource("2_4l8xe")
+script = ExtResource("2_6oubd")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="BasicProjectileEmitter" type="Node2D" parent="Player"]
-script = ExtResource("4_d2qfn")
+script = ExtResource("3_ntda5")
 
 [node name="MovementController" type="Node2D" parent="Player"]
 position = Vector2(-470, -990)
 scale = Vector2(5, 5)
-script = ExtResource("2_36eer")
+script = ExtResource("4_0h1j2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_hd3he")
@@ -1108,7 +1108,7 @@ shape = SubResource("RectangleShape2D_peq6l")
 [node name="WeaponGarlic" type="Area2D" parent="Player"]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_csqoh")
-script = ExtResource("6_c2b2n")
+script = ExtResource("7_hdub7")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/WeaponGarlic"]
 position = Vector2(0, 1.33334)
@@ -1123,7 +1123,7 @@ anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 98.0
 grow_vertical = 2
-script = ExtResource("10_d364r")
+script = ExtResource("8_x5lqv")
 
 [node name="Title" type="Label" parent="UI/DebugPanel"]
 unique_name_in_owner = true
@@ -1155,7 +1155,7 @@ offset_bottom = 133.0
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
-script = ExtResource("9_e06ku")
+script = ExtResource("9_663kt")
 
 [node name="UpgradeOption" type="HBoxContainer" parent="UI/UpgradeSelector"]
 layout_mode = 2
@@ -1180,15 +1180,15 @@ layout_mode = 2
 text = "Spell 1"
 
 [node name="EnemySpawner" type="Node" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("5_sdci2")
+script = ExtResource("9_0o0gf")
 target = NodePath("../Player")
 
 [node name="ItemSpawner" type="Node" parent="." node_paths=PackedStringArray("Target")]
-script = ExtResource("6_hskgy")
+script = ExtResource("10_j22um")
 Target = NodePath("../Player")
 
 [node name="PlayerLevelUpDirector" type="Node" parent="."]
-script = ExtResource("11_2yjg3")
+script = ExtResource("11_fdkqm")
 
-[node name="GlobalsInitializer" type="Node" parent="."]
-script = ExtResource("13_1ktj4")
+[node name="GameInitializer" type="Node" parent="."]
+script = ExtResource("12_3rg4r")

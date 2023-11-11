@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ng7otyiiwow6"
-path="res://.godot/imported/yellowguy.png-a9b5013daf81592ad7a60f1fec0bc2d4.ctex"
+uid="uid://qdx3ma6q34kp"
+path="res://.godot/imported/mainlevbuild.png-7071e86e4aced689b6fc3716b4985502.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://yellowguy.png"
-dest_files=["res://.godot/imported/yellowguy.png-a9b5013daf81592ad7a60f1fec0bc2d4.ctex"]
+source_file="res://shared/assets/mainlevbuild.png"
+dest_files=["res://.godot/imported/mainlevbuild.png-7071e86e4aced689b6fc3716b4985502.ctex"]
 
 [params]
 

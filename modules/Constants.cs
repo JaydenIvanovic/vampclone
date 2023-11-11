@@ -9,7 +9,7 @@ namespace Constants {
         public const string ENEMIES = "enemies";
     }
 
-    public static class DebugUi {
+    public static class UI {
         public const bool CAN_SHOW_DEBUG_PANEL = true;
     }
 }

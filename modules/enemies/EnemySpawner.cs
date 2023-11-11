@@ -8,7 +8,7 @@ public partial class EnemySpawner : Node {
     private Node2D target;
 
     public override void _Ready() {
-        enemyScene = GD.Load<PackedScene>("res://basic_enemy.tscn");
+        enemyScene = GD.Load<PackedScene>("res://modules/enemies/basic_enemy.tscn");
 
         spawnTimer = new Timer {
             OneShot = false,

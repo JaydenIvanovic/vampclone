@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://c02brjxiowevr"]
 
-[ext_resource type="Shader" path="res://basic_enemy.gdshader" id="1_s3ykc"]
-[ext_resource type="Texture2D" uid="uid://xe1proq2c04y" path="res://icon.svg" id="2_h83d4"]
-[ext_resource type="Script" path="res://BasicEnemy.cs" id="3_0enc6"]
+[ext_resource type="Shader" path="res://modules/enemies/basic_enemy.gdshader" id="1_s3ykc"]
+[ext_resource type="Texture2D" uid="uid://xe1proq2c04y" path="res://shared/assets/icon.svg" id="2_h83d4"]
+[ext_resource type="Script" path="res://modules/enemies/BasicEnemy.cs" id="3_0enc6"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_irjcr"]
 shader = ExtResource("1_s3ykc")
