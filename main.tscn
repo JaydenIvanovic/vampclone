@@ -2,11 +2,11 @@
 
 [ext_resource type="Texture2D" uid="uid://qdx3ma6q34kp" path="res://shared/assets/mainlevbuild.png" id="1_1h2ck"]
 [ext_resource type="Script" path="res://modules/player/Player.cs" id="2_6oubd"]
-[ext_resource type="Script" path="res://modules/player/BasicProjectileEmitter.cs" id="3_ntda5"]
+[ext_resource type="Script" path="res://modules/player/upgrades/BasicProjectileEmitter.cs" id="3_g78f0"]
 [ext_resource type="Script" path="res://modules/player/MovementController.cs" id="4_0h1j2"]
 [ext_resource type="Texture2D" uid="uid://ng7otyiiwow6" path="res://modules/player/yellowguy.png" id="5_ibd0f"]
-[ext_resource type="Shader" path="res://modules/player/garlic.gdshader" id="6_ess8c"]
-[ext_resource type="Script" path="res://modules/player/WeaponGarlic.cs" id="7_hdub7"]
+[ext_resource type="Shader" path="res://modules/player/upgrades/garlic.gdshader" id="6_kxtwd"]
+[ext_resource type="Script" path="res://modules/player/upgrades/WeaponGarlic.cs" id="7_r0rmr"]
 [ext_resource type="Script" path="res://modules/ui/DebugPanel.cs" id="8_x5lqv"]
 [ext_resource type="Script" path="res://modules/enemies/EnemySpawner.cs" id="9_0o0gf"]
 [ext_resource type="Script" path="res://modules/ui/UpgradeSelector.cs" id="9_663kt"]
@@ -1071,7 +1071,7 @@ animations = [{
 size = Vector2(16, 16)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_csqoh"]
-shader = ExtResource("6_ess8c")
+shader = ExtResource("6_kxtwd")
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1qivc"]
 radius = 16.68
@@ -1091,7 +1091,7 @@ script = ExtResource("2_6oubd")
 [node name="Camera2D" type="Camera2D" parent="Player"]
 
 [node name="BasicProjectileEmitter" type="Node2D" parent="Player"]
-script = ExtResource("3_ntda5")
+script = ExtResource("3_g78f0")
 
 [node name="MovementController" type="Node2D" parent="Player"]
 position = Vector2(-470, -990)
@@ -1109,7 +1109,7 @@ shape = SubResource("RectangleShape2D_peq6l")
 [node name="WeaponGarlic" type="Area2D" parent="Player"]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_csqoh")
-script = ExtResource("7_hdub7")
+script = ExtResource("7_r0rmr")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player/WeaponGarlic"]
 position = Vector2(0, 1.33334)
