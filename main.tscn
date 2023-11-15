@@ -1,9 +1,10 @@
-[gd_scene load_steps=24 format=3 uid="uid://d1wq2yej31ajf"]
+[gd_scene load_steps=25 format=3 uid="uid://d1wq2yej31ajf"]
 
 [ext_resource type="Texture2D" uid="uid://qdx3ma6q34kp" path="res://shared/assets/mainlevbuild.png" id="1_1h2ck"]
 [ext_resource type="Script" path="res://modules/player/Player.cs" id="2_6oubd"]
 [ext_resource type="Script" path="res://modules/player/upgrades/BasicProjectileEmitter.cs" id="3_g78f0"]
 [ext_resource type="Script" path="res://modules/player/MovementController.cs" id="4_0h1j2"]
+[ext_resource type="Script" path="res://modules/player/upgrades/OrbEmitter.cs" id="5_1knr4"]
 [ext_resource type="Texture2D" uid="uid://ng7otyiiwow6" path="res://modules/player/yellowguy.png" id="5_ibd0f"]
 [ext_resource type="Shader" path="res://modules/player/upgrades/garlic.gdshader" id="6_kxtwd"]
 [ext_resource type="Script" path="res://modules/player/upgrades/WeaponGarlic.cs" id="7_r0rmr"]
@@ -1099,6 +1100,9 @@ position = Vector2(-470, -990)
 scale = Vector2(5, 5)
 script = ExtResource("4_0h1j2")
 
+[node name="OrbEmitter" type="Node" parent="Player"]
+script = ExtResource("5_1knr4")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
 sprite_frames = SubResource("SpriteFrames_hd3he")
 frame_progress = 0.23844
@@ -1118,6 +1122,7 @@ shape = SubResource("CircleShape2D_1qivc")
 debug_color = Color(0.815686, 0.211765, 0.717647, 0.419608)
 
 [node name="Orb" parent="Player" instance=ExtResource("15_epg2v")]
+visible = false
 scale = Vector2(0.666667, 0.666667)
 
 [node name="UI" type="CanvasLayer" parent="."]
