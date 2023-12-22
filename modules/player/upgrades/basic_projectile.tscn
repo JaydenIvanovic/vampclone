@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://c5drrgoct2vho"]
+[gd_scene load_steps=6 format=3 uid="uid://c5drrgoct2vho"]
 
+[ext_resource type="Shader" path="res://modules/player/upgrades/basic_projectile.gdshader" id="2_ar34m"]
 [ext_resource type="Texture2D" uid="uid://xe1proq2c04y" path="res://shared/assets/icon.svg" id="2_e1mho"]
 [ext_resource type="Script" path="res://modules/player/upgrades/BasicProjectile.cs" id="2_getoj"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nj30s"]
+shader = ExtResource("2_ar34m")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_va77w"]
 size = Vector2(12, 12)
@@ -10,6 +14,7 @@ size = Vector2(12, 12)
 script = ExtResource("2_getoj")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_nj30s")
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2_e1mho")
 

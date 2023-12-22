@@ -9,6 +9,8 @@ public partial class BasicEnemy : Area2D, IEnemy {
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() {
         AddToGroup(Constants.Groups.ENEMIES);
+        var animatedSprite = GetNode<AnimatedSprite2D>("./AnimatedSprite2D");
+        animatedSprite.Play("default");
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.

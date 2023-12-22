@@ -1,24 +1,60 @@
-[gd_scene load_steps=6 format=3 uid="uid://c02brjxiowevr"]
+[gd_scene load_steps=11 format=3 uid="uid://c02brjxiowevr"]
 
 [ext_resource type="Shader" path="res://modules/enemies/basic_enemy.gdshader" id="1_s3ykc"]
 [ext_resource type="Texture2D" uid="uid://xe1proq2c04y" path="res://shared/assets/icon.svg" id="2_h83d4"]
 [ext_resource type="Script" path="res://modules/enemies/BasicEnemy.cs" id="3_0enc6"]
+[ext_resource type="Texture2D" uid="uid://bh2cvbcal87rx" path="res://shared/assets/alien1-moving.png" id="4_qq8jf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_irjcr"]
 shader = ExtResource("1_s3ykc")
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_ma34n"]
+atlas = ExtResource("4_qq8jf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jc6i3"]
+atlas = ExtResource("4_qq8jf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khiuk"]
+atlas = ExtResource("4_qq8jf")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kbskx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ma34n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jc6i3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khiuk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dejhh"]
-size = Vector2(130, 130)
+size = Vector2(45, 85)
 
 [node name="Enemy" type="Area2D"]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("3_0enc6")
 
 [node name="Sprite" type="Sprite2D" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_irjcr")
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("2_h83d4")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kbskx")
+frame_progress = 0.192335
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(4.76837e-07, -4.76837e-07)
+position = Vector2(0.5, 0.5)
 scale = Vector2(0.2, 0.2)
 shape = SubResource("RectangleShape2D_dejhh")
