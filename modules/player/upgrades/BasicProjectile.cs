@@ -3,7 +3,7 @@ using Godot;
 public partial class BasicProjectile : Area2D, IMover {
     public Vector2 Direction { get; set; } = Vector2.Zero;
 
-    private const float SPEED = 200;
+    private const float SPEED = 100;
     private const double MAX_LIFETIME_IN_SECONDS = 10;
     private double timeInWorld = 0;
 

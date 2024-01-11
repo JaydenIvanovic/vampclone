@@ -3,7 +3,7 @@ using Godot;
 public partial class MovementController : Node2D, IMover {
     public Vector2 Direction { get; private set; } = Vector2.Zero;
 
-    private float speed = 100;
+    private float speed = 50;
     private Node2D target;
     private AnimatedSprite2D sprite;
 

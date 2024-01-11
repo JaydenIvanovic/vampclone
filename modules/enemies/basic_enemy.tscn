@@ -41,7 +41,6 @@ animations = [{
 size = Vector2(45, 85)
 
 [node name="Enemy" type="Area2D"]
-scale = Vector2(1.5, 1.5)
 script = ExtResource("3_0enc6")
 
 [node name="Sprite" type="Sprite2D" parent="."]
