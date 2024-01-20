@@ -1264,7 +1264,7 @@ theme_override_font_sizes/normal_font_size = 12
 text = "Upgrade description goes here. Lorem ipsum blah blah bloo blop slop."
 fit_content = true
 
-[node name="SelectUpgradeButton1" type="Button" parent="UI/UpgradeSelector/Upgrades/Upgrade1"]
+[node name="Button" type="Button" parent="UI/UpgradeSelector/Upgrades/Upgrade1"]
 layout_mode = 2
 text = "Select"
 
@@ -1284,7 +1284,7 @@ theme_override_font_sizes/normal_font_size = 12
 text = "Upgrade description goes here. Lorem ipsum blah blah bloo blop slop."
 fit_content = true
 
-[node name="SelectUpgradeButton2" type="Button" parent="UI/UpgradeSelector/Upgrades/Upgrade2"]
+[node name="Button" type="Button" parent="UI/UpgradeSelector/Upgrades/Upgrade2"]
 layout_mode = 2
 text = "Select"
 
@@ -1304,7 +1304,7 @@ theme_override_font_sizes/normal_font_size = 12
 text = "Upgrade description goes here. Lorem ipsum blah blah bloo blop slop."
 fit_content = true
 
-[node name="SelectUpgradeButton3" type="Button" parent="UI/UpgradeSelector/Upgrades/Upgrade3"]
+[node name="Button" type="Button" parent="UI/UpgradeSelector/Upgrades/Upgrade3"]
 layout_mode = 2
 text = "Select"
 
