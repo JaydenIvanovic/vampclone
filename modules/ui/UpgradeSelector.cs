@@ -1,11 +1,11 @@
 using Godot;
-using System;
 
-public partial class UpgradeSelector : VFlowContainer {
+public partial class UpgradeSelector : Container {
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
-		var button1 = GetNode<Button>("./UpgradeOption/Button");
-		var button2 = GetNode<Button>("./UpgradeOption2/Button");
+		var button1 = GetNode<Button>("./Upgrades/Upgrade1/SelectUpgradeButton1");
+		var button2 = GetNode<Button>("./Upgrades/Upgrade2/SelectUpgradeButton2");
+		var button3 = GetNode<Button>("./Upgrades/Upgrade3/SelectUpgradeButton3");
 
 		button1.ButtonDown += () => {
 			Globals.GameState.NumProjectileCountUpgrades += 1;
@@ -14,6 +14,11 @@ public partial class UpgradeSelector : VFlowContainer {
 
 		button2.ButtonDown += () => {
 			Globals.GameState.NumGarlicUpgrades += 1;
+			FinalizeUpgradeSelection();
+		};
+
+		button3.ButtonDown += () => {
+			Globals.GameState.NumOrbs += 1;
 			FinalizeUpgradeSelection();
 		};
 

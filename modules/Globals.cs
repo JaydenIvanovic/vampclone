@@ -6,6 +6,7 @@ namespace Globals {
         public static uint Kills { get; set; }
         public static uint NumProjectileCountUpgrades { get; set; }
         public static uint NumGarlicUpgrades { get; set; }
+        public static uint NumOrbs { get; set; }
         public static uint PlayerHealthAmount { get; set; }
     }
 }

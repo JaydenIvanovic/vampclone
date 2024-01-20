@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://d1wq2yej31ajf"]
+[gd_scene load_steps=31 format=3 uid="uid://d1wq2yej31ajf"]
 
 [ext_resource type="Texture2D" uid="uid://qdx3ma6q34kp" path="res://shared/assets/mainlevbuild.png" id="1_1h2ck"]
 [ext_resource type="Script" path="res://modules/player/Player.cs" id="2_6oubd"]
@@ -1147,6 +1147,13 @@ shader = ExtResource("6_kxtwd")
 [sub_resource type="CircleShape2D" id="CircleShape2D_1qivc"]
 radius = 16.68
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hm1fw"]
+bg_color = Color(0.32549, 0.121569, 0.152941, 0.607843)
+border_width_top = 5
+border_width_bottom = 5
+border_color = Color(0.901961, 0.796078, 0.423529, 1)
+border_blend = true
+
 [node name="Main" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -1159,7 +1166,7 @@ position = Vector2(94, 198)
 script = ExtResource("2_6oubd")
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
-zoom = Vector2(1.7, 1.7)
+zoom = Vector2(1.5, 1.5)
 
 [node name="BasicProjectileEmitter" type="Node2D" parent="Player"]
 script = ExtResource("3_g78f0")
@@ -1193,6 +1200,7 @@ debug_color = Color(0.815686, 0.211765, 0.717647, 0.419608)
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="DebugPanel" type="VBoxContainer" parent="UI"]
+visible = false
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 98.0
@@ -1219,7 +1227,7 @@ unique_name_in_owner = true
 layout_mode = 2
 text = "Experience: 0"
 
-[node name="UpgradeSelector" type="VFlowContainer" parent="UI"]
+[node name="UpgradeSelector" type="PanelContainer" parent="UI"]
 process_mode = 2
 visible = false
 anchors_preset = 8
@@ -1227,36 +1235,78 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -114.5
-offset_top = -133.0
-offset_right = 114.5
-offset_bottom = 133.0
+offset_left = -140.5
+offset_top = -107.5
+offset_right = 140.5
+offset_bottom = 107.5
 grow_horizontal = 2
 grow_vertical = 2
-alignment = 1
+theme_override_styles/panel = SubResource("StyleBoxFlat_hm1fw")
 script = ExtResource("9_663kt")
 
-[node name="UpgradeOption" type="HBoxContainer" parent="UI/UpgradeSelector"]
+[node name="Upgrades" type="HBoxContainer" parent="UI/UpgradeSelector"]
+modulate = Color(0.996078, 0.862745, 0.458824, 1)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="UI/UpgradeSelector/UpgradeOption"]
+[node name="Upgrade1" type="VBoxContainer" parent="UI/UpgradeSelector/Upgrades"]
 layout_mode = 2
-text = "Add 1 projectile"
+size_flags_horizontal = 3
 
-[node name="Button" type="Button" parent="UI/UpgradeSelector/UpgradeOption"]
+[node name="Heading" type="Label" parent="UI/UpgradeSelector/Upgrades/Upgrade1"]
 layout_mode = 2
-text = "Spell 1"
+text = "Upgrade"
+horizontal_alignment = 1
 
-[node name="UpgradeOption2" type="HBoxContainer" parent="UI/UpgradeSelector"]
+[node name="Description" type="RichTextLabel" parent="UI/UpgradeSelector/Upgrades/Upgrade1"]
 layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 12
+text = "Upgrade description goes here. Lorem ipsum blah blah bloo blop slop."
+fit_content = true
 
-[node name="Label" type="Label" parent="UI/UpgradeSelector/UpgradeOption2"]
+[node name="SelectUpgradeButton1" type="Button" parent="UI/UpgradeSelector/Upgrades/Upgrade1"]
 layout_mode = 2
-text = "Add garlic"
+text = "Select"
 
-[node name="Button" type="Button" parent="UI/UpgradeSelector/UpgradeOption2"]
+[node name="Upgrade2" type="VBoxContainer" parent="UI/UpgradeSelector/Upgrades"]
 layout_mode = 2
-text = "Spell 1"
+size_flags_horizontal = 3
+
+[node name="Heading" type="Label" parent="UI/UpgradeSelector/Upgrades/Upgrade2"]
+layout_mode = 2
+text = "Upgrade"
+horizontal_alignment = 1
+
+[node name="Description" type="RichTextLabel" parent="UI/UpgradeSelector/Upgrades/Upgrade2"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 12
+text = "Upgrade description goes here. Lorem ipsum blah blah bloo blop slop."
+fit_content = true
+
+[node name="SelectUpgradeButton2" type="Button" parent="UI/UpgradeSelector/Upgrades/Upgrade2"]
+layout_mode = 2
+text = "Select"
+
+[node name="Upgrade3" type="VBoxContainer" parent="UI/UpgradeSelector/Upgrades"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Heading" type="Label" parent="UI/UpgradeSelector/Upgrades/Upgrade3"]
+layout_mode = 2
+text = "Upgrade"
+horizontal_alignment = 1
+
+[node name="Description" type="RichTextLabel" parent="UI/UpgradeSelector/Upgrades/Upgrade3"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/normal_font_size = 12
+text = "Upgrade description goes here. Lorem ipsum blah blah bloo blop slop."
+fit_content = true
+
+[node name="SelectUpgradeButton3" type="Button" parent="UI/UpgradeSelector/Upgrades/Upgrade3"]
+layout_mode = 2
+text = "Select"
 
 [node name="GameOverScreen" type="VFlowContainer" parent="UI"]
 process_mode = 2
