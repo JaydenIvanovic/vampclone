@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 
 public readonly struct LinearSequenceTimerRunConfig {
@@ -48,6 +49,7 @@ public class LinearSequenceTimer {
             };
             destroyTimer.Timeout += () => {
                 config.DestroyFunc();
+                config.RootNode.GetChildren().ToList().ForEach(n => config.RootNode.RemoveChild(n));
                 canRun = true;
             };
             config.RootNode.AddChild(destroyTimer);

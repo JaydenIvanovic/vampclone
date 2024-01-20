@@ -1,14 +1,23 @@
 using System;
+using Constants;
 using Godot;
 
 public partial class Orb : Area2D {
 	private double cumulativeDelta;
 	private const uint OFFSET = 20;
 	private const uint SPEED = 3;
+	private const uint DAMAGE = 100;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
 		cumulativeDelta = 0;
+
+		AreaEntered += (Area2D area) => {
+			if (area.IsInGroup(Groups.ENEMIES)) {
+				var enemy = area as IEnemy;
+				enemy.TakeDamage(DAMAGE);
+			}
+		};
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -1,22 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://iq6tq1u4yckx"]
+[gd_scene load_steps=4 format=3 uid="uid://iq6tq1u4yckx"]
 
 [ext_resource type="Script" path="res://modules/items/ExperienceGem.cs" id="1_fgn7m"]
-[ext_resource type="Texture2D" uid="uid://xe1proq2c04y" path="res://shared/assets/icon.svg" id="2_3c4tk"]
-[ext_resource type="Shader" path="res://modules/items/experience_gem.gdshader" id="2_prats"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_c7koe"]
-shader = ExtResource("2_prats")
+[ext_resource type="Texture2D" uid="uid://b2bwe6qae46tw" path="res://modules/items/experience-gem.png" id="2_raf08"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sgvvj"]
-size = Vector2(6, 6)
+size = Vector2(7, 7)
 
 [node name="ExperienceGem" type="Area2D"]
 script = ExtResource("1_fgn7m")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_c7koe")
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("2_3c4tk")
+texture = ExtResource("2_raf08")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_sgvvj")

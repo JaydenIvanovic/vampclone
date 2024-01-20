@@ -21,6 +21,9 @@ public partial class WeaponGarlic : Area2D {
 			WaitTime = 0.5
 		};
 		damageTicker.Timeout += () => {
+			if (Globals.GameState.NumGarlicUpgrades == 0) {
+				return;
+			}
 			foreach (var enemy in enemiesInRadius) {
 				(enemy as IEnemy).TakeDamage(15.0f);
 			}

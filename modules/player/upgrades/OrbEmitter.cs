@@ -20,7 +20,6 @@ public partial class OrbEmitter : Node {
 			DestroyFunc = () => {
 				GetParent().RemoveChild(orbInstance);
 				orbInstance.QueueFree();
-				GetChildren().ToList().ForEach(n => RemoveChild(n));
 			},
 			RootNode = this
 		});
