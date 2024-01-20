@@ -1316,10 +1316,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -195.0
-offset_top = -97.0
-offset_right = 164.0
-offset_bottom = 116.0
+offset_left = -75.0
+offset_top = -32.5
+offset_right = 75.0
+offset_bottom = 32.5
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
@@ -1328,6 +1328,8 @@ script = ExtResource("10_v55j4")
 [node name="Label" type="Label" parent="UI/GameOverScreen"]
 layout_mode = 2
 text = "GAME OVER"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Button" type="Button" parent="UI/GameOverScreen"]
 layout_mode = 2
