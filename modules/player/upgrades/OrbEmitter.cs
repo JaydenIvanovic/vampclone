@@ -1,9 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using Godot;
 
 public partial class OrbEmitter : Node {
 	private PackedScene orbScene;
-	private Orb orbInstance;
+	private List<Orb> orbInstances;
 	private LinearSequenceTimer linearSequenceTimer;
 
 	// Called when the node enters the scene tree for the first time.
@@ -13,13 +15,21 @@ public partial class OrbEmitter : Node {
 			CreateInterval = 5,
 			DestroyInterval = 5,
 			CreateFunc = () => {
-				orbInstance = orbScene.Instantiate<Orb>();
-				orbInstance.Scale = new Vector2(0.65f, 0.65f);
-				GetParent().AddChild(orbInstance);
+				orbInstances = new List<Orb>();
+				for (var i = 0; i < Globals.GameState.NumOrbs; i++) {
+					var orb = orbScene.Instantiate<Orb>();
+					orb.Scale = new Vector2(0.65f, 0.65f);
+					orb.InitialPosition = i * Mathf.Pi;
+					orbInstances.Add(orb);
+					GetParent().AddChild(orb);
+				}
+
 			},
 			DestroyFunc = () => {
-				GetParent().RemoveChild(orbInstance);
-				orbInstance.QueueFree();
+				orbInstances.ForEach(orb => {
+					GetParent().RemoveChild(orb);
+					orb.QueueFree();
+				});
 			},
 			RootNode = this
 		});

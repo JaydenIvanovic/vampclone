@@ -7,10 +7,11 @@ public partial class Orb : Area2D {
 	private const uint OFFSET = 20;
 	private const uint SPEED = 3;
 	private const uint DAMAGE = 100;
+	public double InitialPosition { get; set; }
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready() {
-		cumulativeDelta = 0;
+		cumulativeDelta = InitialPosition;
 
 		AreaEntered += (Area2D area) => {
 			if (area.IsInGroup(Groups.ENEMIES)) {
