@@ -7,7 +7,6 @@ public partial class MovementController : Node2D, IMover {
     private Node2D target;
     private AnimatedSprite2D sprite;
 
-    // Called when the node enters the scene tree for the first time.
     public override void _Ready() {
         target = GetParent<Node2D>();
         // TODO: Refactor this coupling out? Should we go back to a basic Player.cs script?
@@ -15,8 +14,7 @@ public partial class MovementController : Node2D, IMover {
 
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta) {
+    public override void _PhysicsProcess(double delta) {
         if (Input.IsActionPressed("move_left")) {
             target.Position = target.Position + Vector2.Left * speed * (float)delta;
             Direction = Vector2.Left;
