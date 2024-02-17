@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://d1wq2yej31ajf"]
+[gd_scene load_steps=32 format=3 uid="uid://d1wq2yej31ajf"]
 
 [ext_resource type="Texture2D" uid="uid://qdx3ma6q34kp" path="res://shared/assets/mainlevbuild.png" id="1_1h2ck"]
 [ext_resource type="Script" path="res://modules/player/Player.cs" id="2_6oubd"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://modules/ui/GameOverScreen.cs" id="10_v55j4"]
 [ext_resource type="Script" path="res://modules/player/PlayerLevelUpDirector.cs" id="11_fdkqm"]
 [ext_resource type="Script" path="res://modules/GameInitializer.cs" id="12_3rg4r"]
+[ext_resource type="Script" path="res://FPS.cs" id="13_esi54"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wgmwu"]
 texture = ExtResource("1_1h2ck")
@@ -1226,6 +1227,10 @@ text = "Kills: 0"
 unique_name_in_owner = true
 layout_mode = 2
 text = "Experience: 0"
+
+[node name="FPS" type="Label" parent="UI/DebugPanel"]
+layout_mode = 2
+script = ExtResource("13_esi54")
 
 [node name="UpgradeSelector" type="PanelContainer" parent="UI"]
 process_mode = 2

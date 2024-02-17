@@ -4,7 +4,7 @@ public partial class BasicEnemy : Area2D, IEnemy {
     public Node2D Target { get; set; }
     private Vector2 moveDirection;
     private float health = 30;
-    private float moveSpeed = 30;
+    private float moveSpeed = 20;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() {
