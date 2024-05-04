@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class BasicProjectile : Area2D, IMover {
+public partial class BasicProjectile : Area2D {
     public Vector2 Direction { get; set; } = Vector2.Zero;
 
     private const float SPEED = 100;
@@ -9,25 +9,21 @@ public partial class BasicProjectile : Area2D, IMover {
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() {
-        AreaEntered += HandleCollision;
+        AreaEntered += (Area2D area) => {
+            if (area.IsInGroup(Constants.Groups.ENEMIES)) {
+                (area as IEnemy).TakeDamage(30);
+                QueueFree();
+            }
+        };
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta) {
         if (timeInWorld > MAX_LIFETIME_IN_SECONDS) {
             QueueFree();
-        }
-        timeInWorld += delta;
-
-        Position = Position + Direction * SPEED * (float)delta;
-    }
-
-    private void HandleCollision(Area2D area) {
-        if (!area.GetGroups().Contains(Constants.Groups.ENEMIES)) {
             return;
         }
-        (area as IEnemy).TakeDamage(30);
-        QueueFree();
+        timeInWorld += delta;
+        Position = Position + Direction * SPEED * (float)delta;
     }
-
 }

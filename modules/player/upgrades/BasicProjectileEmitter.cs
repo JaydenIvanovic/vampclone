@@ -6,7 +6,6 @@ public partial class BasicProjectileEmitter : Node2D {
     private PackedScene projectileScene;
     private Array<BasicProjectile> projectiles;
     private Timer spawnTimer;
-    private uint numberOfProjectiles = 1;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() {
@@ -23,11 +22,6 @@ public partial class BasicProjectileEmitter : Node2D {
         AddChild(spawnTimer);
     }
 
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta) {
-        numberOfProjectiles = Globals.GameState.NumProjectileCountUpgrades;
-    }
-
     private void SpawnProjectile() {
         // Ensures we don't spawn a projectile that
         // will remain stationary.
@@ -35,11 +29,7 @@ public partial class BasicProjectileEmitter : Node2D {
             return;
         }
 
-        if (Constants.Logger.CAN_LOG_SPAWN_PROJECTILE) {
-            GD.Print("Spawning projectile...");
-        }
-
-        for (var i = 0; i < numberOfProjectiles; i++) {
+        for (var i = 0; i < Globals.GameState.NumProjectileCountUpgrades; i++) {
             var projectile = projectileScene.Instantiate<BasicProjectile>();
             projectile.Position = mover.Position;
             projectile.Direction = mover.Direction;
