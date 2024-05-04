@@ -7,7 +7,6 @@ namespace Constants {
 
     public static class Groups {
         public const string ENEMIES = "enemies";
-        public const string BOUNDARIES = "boundaries";
     }
 
     public static class UI {
