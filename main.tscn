@@ -1,11 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://d1wq2yej31ajf"]
+[gd_scene load_steps=32 format=3 uid="uid://d1wq2yej31ajf"]
 
 [ext_resource type="Texture2D" uid="uid://qdx3ma6q34kp" path="res://shared/assets/mainlevbuild.png" id="1_1h2ck"]
 [ext_resource type="Script" path="res://modules/player/Player.cs" id="2_6oubd"]
 [ext_resource type="Texture2D" uid="uid://ccs3uaq1l7xlp" path="res://shared/assets/dungeon-tiles.png" id="2_kc12x"]
 [ext_resource type="Texture2D" uid="uid://bp26l52nk403o" path="res://shared/assets/base-tile.png" id="3_avk5q"]
 [ext_resource type="Script" path="res://modules/player/upgrades/BasicProjectileEmitter.cs" id="3_g78f0"]
-[ext_resource type="Script" path="res://modules/player/MovementController.cs" id="4_0h1j2"]
 [ext_resource type="Texture2D" uid="uid://dyb0ry6yl0s3f" path="res://shared/assets/dungeon.png" id="4_5l11c"]
 [ext_resource type="Script" path="res://modules/player/upgrades/OrbEmitter.cs" id="5_1knr4"]
 [ext_resource type="Texture2D" uid="uid://ng7otyiiwow6" path="res://modules/player/yellowguy.png" id="5_ibd0f"]
@@ -18,7 +17,7 @@
 [ext_resource type="Script" path="res://modules/ui/GameOverScreen.cs" id="10_v55j4"]
 [ext_resource type="Script" path="res://modules/player/PlayerLevelUpDirector.cs" id="11_fdkqm"]
 [ext_resource type="Script" path="res://modules/GameInitializer.cs" id="12_3rg4r"]
-[ext_resource type="PackedScene" uid="uid://cr1woqgjddqv1" path="res://modules/items/health_pickup.tscn" id="19_x52ra"]
+[ext_resource type="Script" path="res://modules/Boundaries.cs" id="19_8lfg8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wgmwu"]
 texture = ExtResource("1_1h2ck")
@@ -1156,7 +1155,7 @@ border_color = Color(0.901961, 0.796078, 0.423529, 1)
 border_blend = true
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_142ja"]
-size = Vector2(27, 543)
+size = Vector2(40, 1071)
 
 [node name="Main" type="Node2D"]
 
@@ -1176,11 +1175,6 @@ position_smoothing_enabled = true
 
 [node name="BasicProjectileEmitter" type="Node2D" parent="Player"]
 script = ExtResource("3_g78f0")
-
-[node name="MovementController" type="Node2D" parent="Player"]
-position = Vector2(-470, -990)
-scale = Vector2(5, 5)
-script = ExtResource("4_0h1j2")
 
 [node name="OrbEmitter" type="Node" parent="Player"]
 script = ExtResource("5_1knr4")
@@ -1360,16 +1354,19 @@ script = ExtResource("11_fdkqm")
 script = ExtResource("12_3rg4r")
 
 [node name="Boundaries" type="Node" parent="."]
+script = ExtResource("19_8lfg8")
 
 [node name="Left" type="Area2D" parent="Boundaries"]
 position = Vector2(-350, 0)
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Left"]
-position = Vector2(3.5, 192)
+position = Vector2(10, 192)
 shape = SubResource("RectangleShape2D_142ja")
 
 [node name="Right" type="Area2D" parent="Boundaries"]
 position = Vector2(536, 0)
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Right"]
 position = Vector2(3.5, 192)
@@ -1378,16 +1375,17 @@ shape = SubResource("RectangleShape2D_142ja")
 [node name="Up" type="Area2D" parent="Boundaries"]
 position = Vector2(536, 0)
 rotation = 1.5708
+collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Up"]
-position = Vector2(-74, 451.5)
+position = Vector2(-74, 444)
 shape = SubResource("RectangleShape2D_142ja")
 
-[node name="HealthPickup3" parent="." instance=ExtResource("19_x52ra")]
-position = Vector2(90, 231)
+[node name="Down" type="Area2D" parent="Boundaries"]
+position = Vector2(536, 530.77)
+rotation = 1.5708
+collision_layer = 3
 
-[node name="HealthPickup2" parent="." instance=ExtResource("19_x52ra")]
-position = Vector2(117, 224)
-
-[node name="HealthPickup" parent="." instance=ExtResource("19_x52ra")]
-position = Vector2(132, 195)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Down"]
+position = Vector2(-73.9999, 442.5)
+shape = SubResource("RectangleShape2D_142ja")

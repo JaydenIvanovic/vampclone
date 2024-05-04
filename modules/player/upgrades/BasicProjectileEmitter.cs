@@ -10,7 +10,7 @@ public partial class BasicProjectileEmitter : Node2D {
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready() {
-        mover = GetNode<IMover>("../MovementController");
+        mover = GetParent<IMover>();
         projectileScene = GD.Load<PackedScene>("res://modules/player/upgrades/basic_projectile.tscn");
         projectiles = new Array<BasicProjectile>();
 
