@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://cr1woqgjddqv1"]
+
+[ext_resource type="Script" path="res://modules/items/HealthPickup.cs" id="1_5plmk"]
+[ext_resource type="Texture2D" uid="uid://dyb0ry6yl0s3f" path="res://shared/assets/dungeon.png" id="2_acqov"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0o0mc"]
+size = Vector2(6, 10)
+
+[node name="HealthPickup" type="Node2D"]
+script = ExtResource("1_5plmk")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+texture = ExtResource("2_acqov")
+region_enabled = true
+region_rect = Rect2(82.0029, 49.9725, 7.2624, 12.3764)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_0o0mc")

@@ -18,5 +18,8 @@ public partial class DebugPanel : VBoxContainer {
 
 		var experienceLabel = GetNode<Label>("%Experience");
 		experienceLabel.Text = $"Experience: {Globals.GameState.ExperienceGained}";
+
+		var fpsLabel = GetNode<Label>("%FPS");
+		fpsLabel.Text = $"FPS: {Engine.GetFramesPerSecond()}";
 	}
 }
