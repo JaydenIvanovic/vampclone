@@ -2,12 +2,14 @@ using Godot;
 
 public partial class Player : Area2D, IMover {
     private float speed = 30;
-    private string boundaryHit = "";
     private AnimatedSprite2D sprite;
+    private RayCast2D rayCast;
 
     public Vector2 Direction { get; private set; } = Vector2.Zero;
 
     public override void _Ready() {
+        rayCast = GetNode<RayCast2D>("./RayCast2D");
+
         sprite = GetNode<AnimatedSprite2D>("./AnimatedSprite2D");
         sprite.Play();
 
@@ -18,46 +20,30 @@ public partial class Player : Area2D, IMover {
                     Events.I.EmitSignal(Events.SignalName.PlayerDied);
                 }
             }
-
-            if (target.IsInGroup(Constants.Groups.BOUNDARIES)) {
-                boundaryHit = target.Name;
-            }
-        };
-
-        AreaExited += (Area2D target) => {
-            if (target.IsInGroup(Constants.Groups.BOUNDARIES)) {
-                boundaryHit = "";
-            }
         };
     }
 
     public override void _PhysicsProcess(double delta) {
         if (Input.IsActionPressed("move_left")) {
-            if (boundaryHit == "Left") {
-                return;
-            }
-            Position = Position + Vector2.Left * speed * (float)delta;
-            Direction = Vector2.Left;
+            Move(Vector2.Left, delta);
             sprite.FlipH = true;
         } else if (Input.IsActionPressed("move_right")) {
-            if (boundaryHit == "Right") {
-                return;
-            }
-            Position = Position + Vector2.Right * speed * (float)delta;
-            Direction = Vector2.Right;
+            Move(Vector2.Right, delta);
             sprite.FlipH = false;
         } else if (Input.IsActionPressed("move_down")) {
-            if (boundaryHit == "Down") {
-                return;
-            }
-            Position = Position + Vector2.Down * speed * (float)delta;
-            Direction = Vector2.Down;
+            Move(Vector2.Down, delta);
         } else if (Input.IsActionPressed("move_up")) {
-            if (boundaryHit == "Up") {
-                return;
-            }
-            Position = Position + Vector2.Up * speed * (float)delta;
-            Direction = Vector2.Up;
+            Move(Vector2.Up, delta);
         }
+    }
+
+    private void Move(Vector2 direction, double delta) {
+        rayCast.TargetPosition = direction * 10;
+        rayCast.ForceRaycastUpdate();
+        if (rayCast.IsColliding()) {
+            return;
+        }
+        Position = Position + direction * speed * (float)delta;
+        Direction = direction;
     }
 }
