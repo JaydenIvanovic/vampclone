@@ -10,8 +10,8 @@ public partial class GameOverScreen : VFlowContainer {
 
 		var button = GetNode<Button>("./Button");
 		button.ButtonDown += () => {
-			GetTree().ReloadCurrentScene();
 			GetTree().Paused = false;
+			GetTree().ReloadCurrentScene();
 		};
 
 	}

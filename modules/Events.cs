@@ -11,10 +11,12 @@ public partial class Events : Node2D {
 
     public static Events I {
         get {
-            if (eventInstance == null) {
-                eventInstance = new Events();
-            }
             return eventInstance;
         }
+    }
+
+    // Can be used on game start / load to reconstruct event bus with new game tree objects
+    public static void Init() {
+        eventInstance = new Events();
     }
 }

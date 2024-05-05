@@ -9,6 +9,8 @@ public partial class GameInitializer : Node {
 		Globals.GameState.NumGarlicUpgrades = 0;
 		Globals.GameState.NumProjectileCountUpgrades = 1;
 		Globals.GameState.PlayerHealthAmount = 100;
+
+		Events.Init();
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

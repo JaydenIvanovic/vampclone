@@ -24,6 +24,6 @@ public partial class ItemSpawner : Node {
         var experienceGem = experienceGemScene.Instantiate<ExperienceGem>();
         experienceGem.Position = deathPosition;
         experienceGem.Target = Target;
-        GetTree().Root.GetNode("Main").AddChild(experienceGem);
+        GetParent().AddChild(experienceGem);
     }
 }
