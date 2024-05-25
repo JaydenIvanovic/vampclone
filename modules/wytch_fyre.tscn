@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bt486o2gja0ni"]
+
+[ext_resource type="Texture2D" uid="uid://ceypsf0th6yhl" path="res://shared/assets/wytch-fyre.png" id="1_6cuwr"]
+[ext_resource type="Shader" path="res://modules/wytch_fyre.gdshader" id="1_c8gvh"]
+[ext_resource type="Script" path="res://modules/WytchFyre.cs" id="1_u83s5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_r6k31"]
+resource_local_to_scene = true
+shader = ExtResource("1_c8gvh")
+shader_parameter/delta_time = null
+shader_parameter/relative_time = null
+
+[node name="WytchFyre" type="Node2D"]
+script = ExtResource("1_u83s5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_r6k31")
+position = Vector2(93, 54)
+texture = ExtResource("1_6cuwr")
